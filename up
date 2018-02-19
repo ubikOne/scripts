@@ -1,0 +1,90 @@
+#!/bin/bash
+
+function update() {
+
+  sudo apt update
+
+}
+
+function upgrade() {
+
+  sudo apt upgrade -y
+
+}
+
+function fullUpgrade() {
+
+  sudo apt full-upgrade -y
+
+}
+
+function remove() {
+
+  sudo apt autoremove -y
+
+}
+
+function help() {
+
+  echo "
+
+  up version 0.1 (C) 2018 Bartek \"ubikOne\" Błażejewski
+  Released under the GNU GPL.
+
+  System update & upgrade tool,
+  for debian and debian based linux/gnu distributions
+
+  -u --upgrade       Equivalent of apt update and apt upgrade
+  -U --full-upgrade  Equivalent of apt update and apt full-upgrade
+  -r --remove        Equivalent of apt autoremove
+  -h --help          Print this help screen
+  -v -- version      Print version info
+
+  "
+
+}
+
+function version() {
+
+  echo "version 0.1"
+
+}
+
+function main() {
+
+  if [ "$1" == "--upgrade" ] || [ "$1" == "-u" ]; 
+    then
+      update
+      upgrade
+  fi
+
+  if [ "$1" == "--full-upgrade" ] || [ "$1" == "-U" ]; 
+    then
+      update
+      fullUpgrade
+  fi
+
+  if [ "$1" == "--upgrade-remove" ] || [ "$1" == "-ur" ]; 
+    then
+      update
+      upgrade
+  fi
+
+  if [ "$1" == "--remove" ] || [ "$1" == "-r" ]; 
+    then
+      remove
+  fi
+
+  if [ "$1" == "--help" ] || [ "$1" == "-h" ]; 
+    then
+      help
+  fi
+
+  if [ "$1" == "--version" ] || [ "$1" == "-v" ]; 
+    then
+      version
+  fi
+
+}
+
+main $1 
