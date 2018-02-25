@@ -46,11 +46,11 @@
   ```  
   autoremoving orphan packages and dependencies
 
-## In scripts used [ASK][ask-url]
+### In scripts used [ASK][ask-url]
 
-## The inspiration for the creation of this repository was [An Introduction to Up][up-video-url]
-## You can fond script on [EzeeLinux][ezee-url] GitHub.
-## For more please visit [EzeeLinux][ezee-page-url] website.
+### The inspiration for the creation of this repository was [An Introduction to Up][up-video-url]
+### You can fond script on [EzeeLinux][ezee-url] GitHub.
+### For more please visit [EzeeLinux][ezee-page-url] website.
 
 
 [ezee-url]: https://github.com/EzeeLinux
