@@ -49,7 +49,7 @@
 ### In scripts used [ASK][ask-url]
 
 ### The inspiration for the creation of this repository was [An Introduction to Up][up-video-url]
-### You can fond script on [EzeeLinux][ezee-url] GitHub.
+### You can find script on [EzeeLinux][ezee-url] GitHub.
 ### For more please visit [EzeeLinux][ezee-page-url] website.
 
 
