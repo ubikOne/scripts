@@ -1,5 +1,42 @@
 #!/bin/bash
 
+function ask() {
+  # https://djm.me/ask
+  local prompt default reply
+
+  while true; do
+
+    if [ "${2:-}" = "Y" ]; then
+      prompt="Y/n"
+      default=Y
+    elif [ "${2:-}" = "N" ]; then
+      prompt="y/N"
+      default=N
+    else
+      prompt="y/n"
+      default=
+    fi
+
+    # Ask the question (not using "read -p" as it uses stderr not stdout)
+    echo -n "$1 [$prompt] "
+
+    # Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
+    read reply </dev/tty
+
+    # Default?
+    if [ -z "$reply" ]; then
+      reply=$default
+    fi
+
+    # Check if the reply is valid
+    case "$reply" in
+      Y*|y*) return 0 ;;
+      N*|n*) return 1 ;;
+    esac
+
+  done
+}
+
 function update() {
 
   sudo apt update
@@ -18,6 +55,12 @@ function fullUpgrade() {
 
 }
 
+function show() {
+
+  sudo apt list --upgradable
+
+}
+
 function remove() {
 
   sudo apt autoremove -y
@@ -28,15 +71,14 @@ function help() {
 
   echo "
 
-  up version 0.1 (C) 2018 Bartek \"ubikOne\" Błażejewski
+  up version 1.0 (C) 2018 Bartek \"ubikOne\" Błażejewski
   Released under the GNU GPL.
 
   System update & upgrade tool,
   for debian and debian based linux/gnu distributions
 
-  -u --upgrade       Equivalent of apt update and apt upgrade
-  -U --full-upgrade  Equivalent of apt update and apt full-upgrade
-  -r --remove        Equivalent of apt autoremove
+  -u --full-upgrade  updating packages and full upgrade of system
+  -r --remove        autoremoving orphan packages and dependencies
   -h --help          Print this help screen
   -v -- version      Print version info
 
@@ -49,28 +91,31 @@ function help() {
 
 function version() {
 
-  echo "version 0.1"
+  echo "version 1.0"
 
 }
 
 function main() {
 
-  if [ "$1" == "--upgrade" ] || [ "$1" == "-u" ]; 
+  update
+  if ask "Display packages to upgrade?" N; 
     then
-      update
-      upgrade
+    show
+  else
+  echo ""
   fi
+  upgrade
 
-  if [ "$1" == "--full-upgrade" ] || [ "$1" == "-U" ]; 
+  if [ "$1" == "--full-upgrade" ] || [ "$1" == "-u" ]; 
     then
       update
+      if ask "Display packages to upgrade?"  N; 
+        then
+        show
+      else
+      echo ""
+      fi
       fullUpgrade
-  fi
-
-  if [ "$1" == "--upgrade-remove" ] || [ "$1" == "-ur" ]; 
-    then
-      update
-      upgrade
   fi
 
   if [ "$1" == "--remove" ] || [ "$1" == "-r" ]; 
