@@ -75,9 +75,14 @@ function help() {
   Released under the GNU GPL.
 
   System update & upgrade tool,
-  for debian and debian based linux/gnu distributions
+  for debian and debian based linux/gnu distributions.
 
-  -u --full-upgrade  updating packages and full upgrade of system
+  Running up without options will update the apt cache and perform
+  normal packages updates.
+  
+
+  -u --full-upgrade  update the apt cache and then perform a
+                     full distribution update
   -r --remove        autoremoving orphan packages and dependencies
   -h --help          Print this help screen
   -v -- version      Print version info
