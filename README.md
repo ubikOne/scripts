@@ -1,8 +1,8 @@
 # Scripts
 
-# A collection of simple and useful tools for everyday use
+## A collection of simple and useful tools for everyday use
 
-## up - System update & upgrade tool, for debian and debian based linux/gnu distributions
+### up - System update & upgrade tool, for debian and debian based linux/gnu distributions
 
 1. Description:
 
