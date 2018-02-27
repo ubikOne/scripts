@@ -14,6 +14,11 @@
   ```bash
   /usr/local/bin
   ```
+  or
+  ```bash
+  ~/bin
+  ```
+  
 3. License:
 
   up is free softare. You can redistribute it and/or modify it under the
@@ -25,10 +30,17 @@
 
 4. Use case:
 
-  up without options will update the apt cache and then perform programs and packages update
+  ```bash
+  up -u
+  ```
+  or
+  ```bash
+  up -upgrade
+  ```  
+  update the apt cache and then perform programs and packages update
 
   ```bash
-  up -u 
+  up -U 
   ```
   or
   ```bash

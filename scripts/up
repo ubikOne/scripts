@@ -71,7 +71,7 @@ function help() {
 
   echo "
 
-  up version 1.0 (C) 2018 Bartek \"ubikOne\" Błażejewski
+  up version 1.0.1 (C) 2018 Bartek \"ubikOne\" Błażejewski
   Released under the GNU GPL.
 
   System update & upgrade tool,
@@ -96,22 +96,25 @@ function help() {
 
 function version() {
 
-  echo "version 1.0"
+  echo "version 1.0.1"
 
 }
 
 function main() {
 
-  update
-  if ask "Display packages to upgrade?" N; 
+  if [ "$1" == "-upgrade" ] || [ "$1" == "-u" ]; 
     then
-    show
-  else
-  echo ""
+      update
+      if ask "Display packages to upgrade?"  N; 
+        then
+        show
+      else
+      echo ""
+      fi
+      upgrade
   fi
-  upgrade
 
-  if [ "$1" == "--full-upgrade" ] || [ "$1" == "-u" ]; 
+  if [ "$1" == "--full-upgrade" ] || [ "$1" == "-U" ]; 
     then
       update
       if ask "Display packages to upgrade?"  N; 
