@@ -2,7 +2,7 @@
 
 ## A collection of simple and useful tools for everyday use
 
-### up - System update & upgrade tool, for debian and debian based linux/gnu distributions
+### [up][up-url] - System update & upgrade tool, for debian and debian based linux/gnu distributions
 
 1. Description:
 
@@ -61,7 +61,7 @@
 ### In scripts used [ASK][ask-url]
 
 ### The inspiration for the creation of this repository was [An Introduction to Up][up-video-url]
-### You can fond script on [EzeeLinux][ezee-url] GitHub.
+### You can find script on [EzeeLinux][ezee-url] GitHub.
 ### For more please visit [EzeeLinux][ezee-page-url] website.
 
 
@@ -70,3 +70,5 @@
 [up-video-url]: https://youtu.be/47hbXbqbwso
 [ask-url]: https://gist.github.com/davejamesmiller/1965569
 [license-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
+
+[up-url]: https://github.com/ubikOne/scripts/blob/master/scripts/up
