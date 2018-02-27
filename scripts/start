@@ -1,0 +1,148 @@
+#!/bin/bash
+
+function ask() {
+  # https://djm.me/ask
+  local prompt default reply
+
+  while true; do
+
+    if [ "${2:-}" = "Y" ]; then
+      prompt="Y/n"
+      default=Y
+    elif [ "${2:-}" = "N" ]; then
+      prompt="y/N"
+      default=N
+    else
+      prompt="y/n"
+      default=
+    fi
+
+    # Ask the question (not using "read -p" as it uses stderr not stdout)
+    echo -n "$1 [$prompt] "
+
+    # Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
+    read reply </dev/tty
+
+    # Default?
+    if [ -z "$reply" ]; then
+      reply=$default
+    fi
+
+    # Check if the reply is valid
+    case "$reply" in
+      Y*|y*) return 0 ;;
+      N*|n*) return 1 ;;
+    esac
+
+  done
+}
+
+function update() {
+  sudo apt update
+  sudo apt full-upgrade -y
+  sudo apt autoremove -y
+}
+
+function tweak() {
+  dpkg -l | grep -qw openssh-server ||sudo apt install unity-tweak-tool -y
+}
+
+function tools() {
+  # dpkg -l | grep -qw gdebi || sudo apt-get install -yyq gdebi
+  dpkg -l | grep -qw openssh-server ||sudo apt install openssh-server -y
+  dpkg -l | grep -qw curl || sudo apt install curl wget -y
+  dpkg -l | grep -qw git || sudo apt install git -y
+  dpkg -l | grep -qw htop || sudo apt install htop -y
+  dpkg -l | grep -qw glances ||sudo apt install glances -y
+  dpkg -l | grep -qw nmap || sudo apt install nmap -y
+  dpkg -l | grep -qw mc || sudo apt install mc -y
+  dpkg -l | grep -qw zsh || sudo apt install zsh -y
+  # dpkg -l | grep -qw terminator || sudo apt install terminator -y
+  dpkg -l | grep -qw remmina || sudo apt install remmina remmina-plugin-rdp libfreerdp-plugins-standard -y
+}
+
+function powerFonts() {
+  git clone https://github.com/powerline/fonts.git --depth=1
+  cd fonts
+  ./install.sh
+  cd ..
+  rm -rf fonts
+}
+
+function albert() {
+  sudo add-apt-repository ppa:nilarimogard/webupd8 -y
+  sudo apt update
+  sudo apt install albert -y
+}
+
+function wine() {
+  wget https://dl.winehq.org/wine-builds/Release.key
+  sudo apt-key add Release.key && sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
+  sudo apt-get update
+  sudo apt-get install --install-recommends winehq-stable -y
+}
+
+function main() {
+  update
+  if ask "
+  Ubuntu 16.04?
+  " N;
+    then
+    tweak
+  fi
+  if ask "
+  Do you want to install:
+  |_curl 
+  |_wget 
+  |_git 
+  |_htop 
+  |_glances 
+  |_nmap 
+  |_mc 
+  |_zsh
+  |_ssh server
+  |_remmina
+  " N;
+    then
+    tools
+  else
+    echo "
+    You choose not to install
+    "
+  fi
+  if ask "
+  Do you want to install Power Line Fonts?
+  " N;
+    then
+    powerFonts
+  else
+    echo "
+    You choose not to install
+    "
+  fi
+  if ask "
+  Do you want to install albert omni laucher?
+  " N;
+    then
+    albert
+  else
+    echo "
+    You choose not to install
+    "
+  fi
+  if ask "
+  Do you want to install wine 3.0?
+  " N;
+    then
+    wine
+  else
+    echo "
+    You choose not to install
+    "
+  fi
+}
+
+main
+
+
+# sudo add-apt-repository ppa:dawidd0811/neofetch
