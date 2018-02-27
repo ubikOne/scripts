@@ -2,6 +2,34 @@
 
 ## A collection of simple and useful tools for everyday use
 
+### [start][start-url] - Fresh system must (for me) install
+
+1. Description:
+
+  start is install script for fresh Debian/Ubuntu install.
+
+2. License:
+
+  up is free softare. You can redistribute it and/or modify it under the
+  terms of the GNU General Public License Version 3.0. as published by
+  the Free Software Foundation. A copy of the GNU GPL 3.0 is provided with the
+  software.
+
+  for more read LICENSE file or visit [GNU GPL-3.0][license-url] website.
+
+3. Use case:
+
+  first you need to give appropriate permissions to script
+
+  ```bash
+  sudo chmod +x start
+  ```
+  then just run the script and answer few questionns
+  ```bash
+  ./start
+  ```  
+  and answer few questionns
+
 ### [up][up-url] - System update & upgrade tool, for debian and debian based linux/gnu distributions
 
 1. Description:
@@ -72,3 +100,4 @@
 [license-url]: https://www.gnu.org/licenses/gpl-3.0.en.html
 
 [up-url]: https://github.com/ubikOne/scripts/blob/master/scripts/up
+[start-url]:https://github.com/ubikOne/scripts/blob/master/scripts/start
