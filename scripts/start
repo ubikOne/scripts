@@ -44,11 +44,11 @@ function update() {
 }
 
 function tweak() {
-  dpkg -l | grep -qw openssh-server ||sudo apt install unity-tweak-tool -y
+  dpkg -l | grep -qw unity-tweak-tool ||sudo apt install unity-tweak-tool -y
 }
 
 function tools() {
-  # dpkg -l | grep -qw gdebi || sudo apt-get install -yyq gdebi
+  dpkg -l | grep -qw gdebi || sudo apt-get install -y gdebi
   dpkg -l | grep -qw openssh-server ||sudo apt install openssh-server -y
   dpkg -l | grep -qw curl || sudo apt install curl wget -y
   dpkg -l | grep -qw git || sudo apt install git -y
@@ -57,16 +57,8 @@ function tools() {
   dpkg -l | grep -qw nmap || sudo apt install nmap -y
   dpkg -l | grep -qw mc || sudo apt install mc -y
   dpkg -l | grep -qw zsh || sudo apt install zsh -y
-  # dpkg -l | grep -qw terminator || sudo apt install terminator -y
+  dpkg -l | grep -qw terminator || sudo apt install terminator -y
   dpkg -l | grep -qw remmina || sudo apt install remmina remmina-plugin-rdp libfreerdp-plugins-standard -y
-}
-
-function powerFonts() {
-  git clone https://github.com/powerline/fonts.git --depth=1
-  cd fonts
-  ./install.sh
-  cd ..
-  rm -rf fonts
 }
 
 function albert() {
@@ -92,29 +84,21 @@ function main() {
   fi
   if ask "
   Do you want to install:
-  |_curl 
-  |_wget 
-  |_git 
-  |_htop 
-  |_glances 
-  |_nmap 
-  |_mc 
-  |_zsh
-  |_ssh server
-  |_remmina
+  |_ gdebi
+  |_ curl 
+  |_ wget 
+  |_ git 
+  |_ htop 
+  |_ glances 
+  |_ nmap 
+  |_ mc 
+  |_ zsh
+  |_ ssh server
+  |_ terminator
+  |_ remmina
   " N;
     then
     tools
-  else
-    echo "
-    You choose not to install
-    "
-  fi
-  if ask "
-  Do you want to install Power Line Fonts?
-  " N;
-    then
-    powerFonts
   else
     echo "
     You choose not to install
