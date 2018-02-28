@@ -85,7 +85,7 @@ function help() {
                      full distribution update
   -r --remove        autoremoving orphan packages and dependencies
   -h --help          Print this help screen
-  -v -- version      Print version info
+  -v --version      Print version info
 
 
   for more visit https://github.com/ubikOne/scripts

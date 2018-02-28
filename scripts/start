@@ -45,6 +45,9 @@ function update() {
 
 function tweak() {
   dpkg -l | grep -qw unity-tweak-tool ||sudo apt install unity-tweak-tool -y
+  sudo apt install caffeine -y
+  sudo apt-get install indicator-cpufreq -y
+  sudo apt-get install indicator-multiload -y
 }
 
 function tools() {
@@ -74,12 +77,79 @@ function wine() {
   sudo apt-get install --install-recommends winehq-stable -y
 }
 
+function neo() {
+  sudo add-apt-repository ppa:dawidd0811/neofetch -y
+  sudo apt update
+  sudo apt install neofetch -y
+}
+
+function thunderbird() {
+  sudo add-apt-repository ppa:mozillateam/thunderbird-next -y
+  sudo apt update
+  sudo apt install thunderbird -y
+}
+
+function vscode() {
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+  sudo apt update && sudo apt install code -y
+}
+
+function help() {
+
+  echo "
+
+  up version 1.0.1 (C) 2018 Bartek \"ubikOne\" Błażejewski
+  Released under the GNU GPL.
+
+  System setup tool,
+  for debian and debian based linux/gnu distributions.
+
+  start will instal programs and tools on your system,
+  such as e.g. mc, htop, vscode, java8, node.js etc.
+  
+
+  -h --help          Print this help screen
+  -v --version      Print version info
+
+
+  for more visit https://github.com/ubikOne/scripts
+
+  "
+
+}
+
+function version() {
+
+  echo "version 0.3"
+
+}
+
 function main() {
+  if [ "$1" == "--help" ] || [ "$1" == "-h" ]; 
+    then
+      help
+      exit
+  fi
+
+  if [ "$1" == "--version" ] || [ "$1" == "-v" ]; 
+    then
+      version
+      exit
+  fi
   update
   if ask "
   Ubuntu 16.04?
   " N;
     then
+    echo "
+    Installing:
+    |_ unity tweak tool
+    |_ caffeine
+    |_ multiload indicator
+    |_ cpufreq indicator
+    "
     tweak
   fi
   if ask "
@@ -96,7 +166,7 @@ function main() {
   |_ ssh server
   |_ terminator
   |_ remmina
-  " N;
+  " Y;
     then
     tools
   else
@@ -106,7 +176,7 @@ function main() {
   fi
   if ask "
   Do you want to install albert omni laucher?
-  " N;
+  " Y;
     then
     albert
   else
@@ -116,7 +186,7 @@ function main() {
   fi
   if ask "
   Do you want to install wine 3.0?
-  " N;
+  " Y;
     then
     wine
   else
@@ -124,9 +194,26 @@ function main() {
     You choose not to install
     "
   fi
+  if ask "
+  Do you want to install neofetch?
+  " Y;
+    then
+    neo
+  else
+    echo "
+    You choose not to install
+    "
+  fi
+  if ask "
+  Do you want to install vscode?
+  " Y;
+    then
+    vscode
+  else
+    echo "
+    You choose not to install
+    "
+  fi
 }
 
-main
-
-
-# sudo add-apt-repository ppa:dawidd0811/neofetch
+main $1

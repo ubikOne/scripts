@@ -2,7 +2,7 @@
 
 ## A collection of simple and useful tools for everyday use
 
-### [start][start-url] - Fresh system must (for me) install
+### [start][start-url] version 0.3 - Fresh system must (for me) install
 
 1. Description:
 
@@ -30,7 +30,7 @@
   ```  
   and answer few questionns
 
-### [up][up-url] - System update & upgrade tool, for debian and debian based linux/gnu distributions
+### [up][up-url] version 1.0.1 - System update & upgrade tool, for debian and debian based linux/gnu distributions
 
 1. Description:
 
