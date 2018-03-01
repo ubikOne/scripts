@@ -2,22 +2,23 @@
 
 ## A collection of simple and useful tools for everyday use
 
-### [start][start-url] version 0.3 - Fresh system must (for me) install
+## License:
 
-1. Description:
-
-  start is install script for fresh Debian/Ubuntu install.
-
-2. License:
-
-  up is free softare. You can redistribute it and/or modify it under the
+  all of scripts are free softare. You can redistribute it and/or modify it under the
   terms of the GNU General Public License Version 3.0. as published by
   the Free Software Foundation. A copy of the GNU GPL 3.0 is provided with the
   software.
 
   for more read LICENSE file or visit [GNU GPL-3.0][license-url] website.
 
-3. Use case:
+## [start][start-url] version 0.3
+### Fresh system must (for me) install
+
+1. Description:
+
+  start is install script for fresh Debian/Ubuntu install.
+
+2. Use case:
 
   first you need to give appropriate permissions to script
 
@@ -30,11 +31,12 @@
   ```  
   and answer few questionns
 
-### [up][up-url] version 1.0.1 - System update & upgrade tool, for debian and debian based linux/gnu distributions
+## [up][up-url] version 1.0.1 
+### System update & upgrade tool, for debian and debian based linux/gnu distributions
 
 1. Description:
 
-  up is simple tool to automates the update procedure Debian and Ubuntu based Linux/GNU systems.
+  up is simple tool to automates the update procedure for Debian/Ubuntu.
 
 2. Instalation:
 
@@ -47,16 +49,7 @@
   ~/bin
   ```
   
-3. License:
-
-  up is free softare. You can redistribute it and/or modify it under the
-  terms of the GNU General Public License Version 3.0. as published by
-  the Free Software Foundation. A copy of the GNU GPL 3.0 is provided with the
-  software.
-
-  for more read LICENSE file or visit [GNU GPL-3.0][license-url] website.
-
-4. Use case:
+3. Use case:
 
   ```bash
   up -u
@@ -91,6 +84,12 @@
 ### The inspiration for the creation of this repository was [An Introduction to Up][up-video-url]
 ### You can find script on [EzeeLinux][ezee-url] GitHub.
 ### For more please visit [EzeeLinux][ezee-page-url] website.
+
+## Coded by Bartłomiej Błażejewski (GNU/General Public License version 3.0)
+
+## Disclaimer:
+
+THIS SOFTWARE IS PROVIDED BY “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 [ezee-url]: https://github.com/EzeeLinux

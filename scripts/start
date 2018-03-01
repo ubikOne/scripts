@@ -58,6 +58,7 @@ function tools() {
   dpkg -l | grep -qw htop || sudo apt install htop -y
   dpkg -l | grep -qw glances ||sudo apt install glances -y
   dpkg -l | grep -qw nmap || sudo apt install nmap -y
+  dpkg -l | grep -qw arp-scan || sudo apt-get install arp-scan -y
   dpkg -l | grep -qw mc || sudo apt install mc -y
   dpkg -l | grep -qw zsh || sudo apt install zsh -y
   dpkg -l | grep -qw terminator || sudo apt install terminator -y
@@ -162,6 +163,7 @@ function main() {
   |_ glances 
   |_ nmap 
   |_ mc 
+  |_ arp-scan
   |_ zsh
   |_ ssh server
   |_ terminator
