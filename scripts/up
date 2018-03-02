@@ -71,17 +71,15 @@ function help() {
 
   echo "
 
-  up version 1.0.1 (C) 2018 Bartek \"ubikOne\" Błażejewski
+  up version 1.0.2 (C) 2018 Bartek \"ubikOne\" Błażejewski
   Released under the GNU GPL.
 
   System update & upgrade tool,
   for debian and debian based linux/gnu distributions.
 
-  Running up without options will update the apt cache and perform
-  normal packages updates.
-  
-
-  -u --full-upgrade  update the apt cache and then perform a
+  -u --upgrade       update the apt cache and then perform a
+                     standard upgrade
+  -U --full-upgrade  update the apt cache and then perform a
                      full distribution update
   -r --remove        autoremoving orphan packages and dependencies
   -h --help          Print this help screen
@@ -96,11 +94,20 @@ function help() {
 
 function version() {
 
-  echo "version 1.0.1"
+  echo "version 1.0.2"
 
 }
 
 function main() {
+
+  echo "
+  Not know what do do?
+
+  -u --upgrade       update the apt cache and then perform a
+                     standard upgrade
+  -U --full-upgrade  update the apt cache and then perform a
+                     full distribution update
+  "
 
   if [ "$1" == "-upgrade" ] || [ "$1" == "-u" ]; 
     then

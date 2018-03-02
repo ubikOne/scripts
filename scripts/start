@@ -61,7 +61,7 @@ function tools() {
   dpkg -l | grep -qw arp-scan || sudo apt-get install arp-scan -y
   dpkg -l | grep -qw mc || sudo apt install mc -y
   dpkg -l | grep -qw zsh || sudo apt install zsh -y
-  dpkg -l | grep -qw terminator || sudo apt install terminator -y
+  # dpkg -l | grep -qw terminator || sudo apt install terminator -y
   dpkg -l | grep -qw remmina || sudo apt install remmina remmina-plugin-rdp libfreerdp-plugins-standard -y
 }
 

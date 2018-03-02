@@ -11,6 +11,8 @@
 
   for more read LICENSE file or visit [GNU GPL-3.0][license-url] website.
 
+## [install][install-url] 
+
 ## [start][start-url] version 0.3
 ### Fresh system must (for me) install
 
@@ -31,7 +33,7 @@
   ```  
   and answer few questionns
 
-## [up][up-url] version 1.0.1 
+## [up][up-url] version 1.0.2
 ### System update & upgrade tool, for debian and debian based linux/gnu distributions
 
 1. Description:
@@ -100,3 +102,4 @@ THIS SOFTWARE IS PROVIDED BY “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, 
 
 [up-url]: https://github.com/ubikOne/scripts/blob/master/scripts/up
 [start-url]:https://github.com/ubikOne/scripts/blob/master/scripts/start
+[install-url]:https://github.com/ubikOne/scripts/blob/master/scripts/install
