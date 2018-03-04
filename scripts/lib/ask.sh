@@ -36,21 +36,3 @@ function ask() {
 
   done
 }
-
-function up() {
-
-  echo "
-  moving up to destination directory
-  "
-  sudo cp -rfv up /usr/bin/
-  sudo cp -rfv up /usr/sbin/
-  echo "
-  completed
-  "
-}
-
-function main() {
-  up
-}
-
-main
