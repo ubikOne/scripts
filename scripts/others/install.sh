@@ -3,9 +3,7 @@
 currentDate=$(date +"%F")
 
 function servicetag() {
-	echo "
-	Podaj servicetag ( wielkimi literami )
-	"
+	echo "Podaj servicetag ( wielkimi literami )"
 	read st
 	touch ST_$st
 }
@@ -117,6 +115,8 @@ function hosts() {
 	echo "192.168.$1.1	sklep$1.serwer	serwer" >> /etc/hosts
 	echo "192.168.$1.11	kasa1" >> /etc/hosts
 	echo "192.168.$1.12	kasa2" >> /etc/hosts
+	echo ""
+	echo ""
 }
 
 function main() {
@@ -137,31 +137,29 @@ function main() {
 	do
 		case $opt in
 			"Kasa")
-				echo "
-				Numer Kasy
-				"
+				echo "Numer Kasy"
 				read numerKasy
 				cd /INSTALL
-				mkdir $currentDate
-				cd $currentDate
 				mkdir kasa$numerKasy
 				cd kasa$numerKasy
 				mkdir logs backup
 				cd /
 				echo "Konfiguracja kasy"
-				initialCopy | tee -a /INSTALL/$currentDate/kasa$numerKasy/logs/kasa_pierwsza_kopia.log
-				cp /etc/hosts /etc/hosts.backup
-				cp /etc/hosts /INSTALL/$currentDate/kasa$numerKasy/backup/
-				cp /etc/sysconfig/selinux /INSTALL/$currentDate/kasa$numerKasy/backup/
+				initialCopy | tee -a /INSTALL/kasa$numerKasy/logs/pierwsza_kopia_$currentDate.log
+				cp -rfv /etc/hosts /etc/hosts.backup
+				cp -rfv /etc/hosts /INSTALL/kasa$numerKasy/backup/
+				cp -rfv /etc/sysconfig/selinux /kasa$numerKasy/$dysk/backup/
 				hosts $numer
-				echo "192.168.$numer.1	sklep$numer.serwer	serwer" >> /etc/hosts
-				echo "192.168.$numer.11	kasa1" >> /etc/hosts
-				echo "192.168.$numer.12	kasa2" >> /etc/hosts
-				sysupdate | tee -a /INSTALL/$currentDate/kasa$numerKasy/logs/kasa.log
-				sysoff | tee -a /INSTALL/$currentDate/kasa$numerKasy/logs/kasa.log
-				gdmoff | tee -a /INSTALL/$currentDate/kasa$numerKasy/logs/kasa.log
-				programinstallkasa | tee -a /INSTALL/$currentDate/kasa$numerKasy/logs/kasa.log
-				secondCopy | tee -a /INSTALL/$currentDate/kasa$numerKasy/logs/kasa_druga_kopia.log
+				# echo "192.168.$numer.1	sklep$numer.serwer	serwer" >> /etc/hosts
+				# echo "192.168.$numer.11	kasa1" >> /etc/hosts
+				# echo "192.168.$numer.12	kasa2" >> /etc/hosts
+				sysupdate | tee -a /INSTALL/kasa$numerKasy/logs/kasa_$currentDate.log
+				sysoff | tee -a /INSTALL/kasa$numerKasy/logs/kasa_$currentDate.log
+				gdmoff | tee -a /INSTALL/kasa$numerKasy/logs/kasa_$currentDate.log
+				programinstallkasa | tee -a /INSTALL/kasa$numerKasy/logs/kasa_$currentDate.log
+				secondCopy | tee -a /INSTALL/kasa$numerKasy/logs/druga_kopia_$currentDate.log
+				cd /INSTALL
+				tar -czvf $currentDate.tar.gz kasa$numerKasy
 				end
 			;;
 			"Serwer")
@@ -172,65 +170,78 @@ function main() {
 					case $opt in
 						"Dysk A")
 							echo "Wybrano dysk A"
+							dysk=Dysk_A
 							cd /INSTALL
 							mkdir $currentDate
 							cd $currentDate
-							mkdir Dysk_A
-							cd DyskA
+							mkdir $dysk
+							cd $dysk
 							mkdir logs backup
 							cd /
 							mkdir A_TO_JEST_DYSK_A
 							touch a_to_jest_dysk_a
-							initialCopy | tee -a /INSTALL/$currentDate/Dysk_A/logs/serwer_dysk_a_pierwsza_kopia.log
+							initialCopy | tee -a /INSTALL/$dysk/logs/pierwsza_kopia_$currentDate.log
+							cp -rfv /etc/hosts /etc/hosts.backup
+							cp -rfv /etc/hosts /INSTALL/$dysk/backup/
+							cp -rfv /etc/sysconfig/selinux /INSTALL/$dysk/backup/
 							echo "192.168.$numer.1	sklep$numer.serwer	serwer" >> /etc/hosts
 							echo "192.168.$numer.11	kasa1" >> /etc/hosts
 							echo "192.168.$numer.12	kasa2" >> /etc/hosts
-							sysoff | tee -a /INSTALL/$currentDate/Dysk_A/logs/serwer_dysk_a.log
-							sysupdate | tee -a /INSTALL/$currentDate/Dysk_A/logs/serwer_dysk_a.log
-							programInstallSerwer | tee -a /INSTALL/$currentDate/Dysk_A/logs/serwer_dysk_a.log
-							secondCopy | tee -a tee -a /INSTALL/$currentDate/Dysk_A/logs/serwer_dysk_a.log
+							sysupdate | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							sysoff | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							programInstallSerwer | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							secondCopy | tee -a /INSTALL/$dysk/logs/druga_kopia_$currentDate.log
+							tar -czvf $currentDate.tar.gz $dysk
 							end
 						;;
 						"Dysk B")
 							echo "Wybrano dysk B"
+							dysk=Dysk_B
 							cd /INSTALL
 							mkdir $currentDate
 							cd $currentDate
-							mkdir Dysk_B
-							cd DyskA
+							mkdir $dysk
+							cd $dysk
 							mkdir logs backup
 							cd /
 							mkdir A_TO_JEST_DYSK_B
 							touch a_to_jest_dysk_b
-							initialCopy | tee -a /INSTALL/$currentDate/Dysk_B/logs/serwer_dysk_b_pierwsza_kopia.log
+							initialCopy | tee -a /INSTALL/$dysk/logs/pierwsza_kopia_$currentDate.log
+							cp -rfv /etc/hosts /etc/hosts.backup
+							cp -rfv /etc/hosts /INSTALL/$dysk/backup/
+							cp -rfv /etc/sysconfig/selinux /INSTALL/$dysk/backup/
 							echo "192.168.$numer.1	sklep$numer.serwer	serwer" >> /etc/hosts
 							echo "192.168.$numer.11	kasa1" >> /etc/hosts
 							echo "192.168.$numer.12	kasa2" >> /etc/hosts
-							sysoff | /INSTALL/$currentDate/Dysk_B/logs/serwer_dysk_b.log
-							sysupdate | tee -a /INSTALL/$currentDate/Dysk_B/logs/serwer_dysk_b.log
-							programInstallSerwer | /INSTALL/$currentDate/Dysk_B/logs/serwer_dysk_b.log
-							secondCopy | tee -a /INSTALL/$currentDate/Dysk_B/logs/serwer_dysk_b_druga_kopia.log
+							sysupdate | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							sysoff | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							programInstallSerwer | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							secondCopy | tee -a /INSTALL/$dysk/logs/druga_kopia_$currentDate.log
+							tar -czvf $currentDate.tar.gz $dysk
 							end
 						;;
 						"Dysk C")
 							echo "Wybrano dysk C"
+							dysk=Dysk_C
 							cd /INSTALL
-							mkdir $currentDate
-							cd $currentDate
-							mkdir Dysk_C
-							cd DyskA
+							mkdir $dysk
+							cd $dysk
 							mkdir logs backup
 							cd /
 							mkdir A_TO_JEST_DYSK_C
 							touch a_to_jest_dysk_c
-							initialCopy | tee -a /INSTALL/$currentDate/Dysk_C/logs/serwer_dysk_c_pierwsza_kopia.log
+							initialCopy | tee -a /INSTALL/$dysk/logs/pierwsza_kopia_$currentDate.log
+							cp -rfv /etc/hosts /etc/hosts.backup
+							cp -rfv /etc/hosts /INSTALL/$dysk/backup/
+							cp -rfv /etc/sysconfig/selinux /INSTALL/$dysk/backup/
 							echo "192.168.$numer.1	sklep$numer.serwer	serwer" >> /etc/hosts
 							echo "192.168.$numer.11	kasa1" >> /etc/hosts
 							echo "192.168.$numer.12	kasa2" >> /etc/hosts
-							sysoff | /INSTALL/$currentDate/Dysk_C/logs/serwer_dysk_c.log
-							sysupdate | tee -a /INSTALL/$currentDate/Dysk_C/logs/serwer_dysk_c.log
-							programInstallSerwer | /INSTALL/$currentDate/Dysk_C/logs/serwer_dysk_c.log
-							secondCopy | tee -a /INSTALL/$currentDate/Dysk_C/logs/serwer_dysk_c_druga_kopia.log
+							sysupdate | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							sysoff | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							programInstallSerwer | tee -a /INSTALL/$dysk/logs/serwer_$currentDate.log
+							secondCopy | tee -a /INSTALL/$dysk/logs/druga_kopia_$currentDate.log
+							tar -czvf $currentDate.tar.gz $dysk
 							end
 						;;
 						"Wyjdź")
