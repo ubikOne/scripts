@@ -13,6 +13,18 @@
 
 ## [install][install-url] 
 
+1. Description:
+
+  install is simple script to install scripts on your system.
+
+2. Use case:
+
+  just launch the script and wiat for finnish
+
+  ```bash
+  ./install
+  ```
+
 ## [start][start-url] version 0.3
 ### Fresh system must (for me) install
 
