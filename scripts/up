@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# inporting from libary
-./lib/ask.sh
+ver=1.0.3
 
 function update() {
 
@@ -37,7 +36,7 @@ function help() {
 
   echo "
 
-  up version 1.0.2 (C) 2018 Bartek \"ubikOne\" Błażejewski
+  up version $ver (C) 2018 Bartek \"ubikOne\" Błażejewski
   Released under the GNU GPL.
 
   System update & upgrade tool,
@@ -49,7 +48,7 @@ function help() {
                      full distribution update
   -r --remove        autoremoving orphan packages and dependencies
   -h --help          Print this help screen
-  -v --version      Print version info
+  -v --version       Print version info
 
 
   for more visit https://github.com/ubikOne/scripts
@@ -60,20 +59,24 @@ function help() {
 
 function version() {
 
-  echo "version 1.0.2"
+  echo "version $ver"
 
 }
 
 function main() {
 
-  echo "
-  Not know what do do?
-
-  -u --upgrade       update the apt cache and then perform a
-                     standard upgrade
-  -U --full-upgrade  update the apt cache and then perform a
-                     full distribution update
-  "
+  if [ $# -eq 0 ]; 
+    then
+      echo ""
+      echo "What you want to do?"
+      echo ""
+      echo "-u --upgrade       update the apt cache and then perform a"
+      echo "                   standard upgrade"
+      echo "-U --full-upgrade  update the apt cache and then perform a"
+      echo "                   full distribution update"
+      echo "-h --help          Print this help screen"
+      echo ""
+  fi
 
   if [ "$1" == "-upgrade" ] || [ "$1" == "-u" ]; 
     then
